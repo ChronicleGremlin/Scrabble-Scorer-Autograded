@@ -85,8 +85,6 @@ function vowelBonusScorer(word) {
    return letterPoints;
 }
 
-let scrabbleScorer;
-
 let bounsScore = {
    name: "Bonus Vowels",
    description: "Vowels are 3 pts, consonants are 1 pt.",
@@ -106,15 +104,13 @@ let scrabbleScore = {
 };
 
 const scoringAlgorithms = [scrabbleScore, simpleScore, bounsScore];
-
+let scrabbleScorer = "";
 
 function scorerPrompt() {
-   console.log('Which scoring algorithm would you like to use?');
    console.log(`0- ${scrabbleScore.name} (${scrabbleScore.description})\n1- ${simpleScore.name} (${simpleScore.description})\n2- ${bounsScore.name} (${bounsScore.description})`);
-   let scoreMode = input.question('Please enter 0, 1, or 2:');
+   scrabbleScorer = input.question('Please enter 0, 1, or 2:');
 
-   return scoreMode;
-
+   return scrabbleScorer;
 };
 
 
@@ -122,11 +118,19 @@ function transform() { };
 
 function runProgram() {
    initialPrompt();
+   console.log('Which scoring algorithm would you like to use?');
    scorerPrompt();
-   console.log(scorerPrompt(scrabbleWord));
+   if (scrabbleScorer == 0) {
+      console.log(`Score for ${scrabbleWord} ${oldScrabbleScorer(scrabbleWord)}`);
+   }
+   if (scrabbleScorer == 1) {
+      console.log(`Score for ${scrabbleWord} ${simpleScorer(scrabbleWord)}`);
+   }
+   if (scrabbleScorer == 2) {
+      console.log(`Score for ${scrabbleWord} ${vowelBonusScorer(scrabbleWord)}`);
+   }
 
 }
-
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
 module.exports = {
