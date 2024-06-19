@@ -23,14 +23,14 @@ const vowelBonusStructure = {
 
 function oldScrabbleScorer(word) {
    word = word.toUpperCase();
-   let letterPoints = "";
+   let letterPoints = 0;
 
    for (let i = 0; i < word.length; i++) {
 
       for (const pointValue in oldPointStructure) {
 
          if (oldPointStructure[pointValue].includes(word[i])) {
-            letterPoints += `Points for '${word[i]}': ${pointValue}\n`
+            letterPoints += Number(pointValue);
          }
 
       }
@@ -53,14 +53,14 @@ let newPointStructure;
 
 function simpleScorer(word) {
    word = word.toUpperCase();
-   let letterPoints = "";
+   let letterPoints = 0;
 
    for (let i = 0; i < word.length; i++) {
 
       for (const pointValue in simplePointStructure) {
 
          if (simplePointStructure[pointValue].includes(word[i])) {
-            letterPoints += `Points for '${word[i]}': ${pointValue}\n`
+            letterPoints += Number(pointValue);
          }
 
       }
@@ -70,16 +70,15 @@ function simpleScorer(word) {
 
 function vowelBonusScorer(word) {
    word = word.toUpperCase();
-   let letterPoints = "";
+   let letterPoints = 0;
 
    for (let i = 0; i < word.length; i++) {
 
       for (const pointValue in vowelBonusStructure) {
 
          if (vowelBonusStructure[pointValue].includes(word[i])) {
-            letterPoints += `Points for '${word[i]}': ${pointValue}\n`
+            letterPoints += Number(pointValue);
          }
-
       }
    }
    return letterPoints;
