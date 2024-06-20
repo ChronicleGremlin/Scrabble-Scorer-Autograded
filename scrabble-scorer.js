@@ -2,7 +2,7 @@
 
 const input = require("readline-sync");
 
-let scrabbleScorerType = ""; 
+let scrabbleScorerType = "";
 let scrabbleWord = "";
 
 const oldPointStructure = {
@@ -128,18 +128,19 @@ function scorerPrompt() {
 function transform(oldStructure) {
    let newStructure = {};
    for (const key in oldStructure) {
-      for (let j = 0; j < oldStructure[key].length; j++){
+      for (let j = 0; j < oldStructure[key].length; j++) {
          newStructure[oldStructure[key][j].toLowerCase()] = key;
       }
    }
    return newStructure;
- };
+};
+
 
 function runProgram() {
+   newPointStructure = transform(oldPointStructure);
    initialPrompt();
    console.log('Which scoring algorithm would you like to use?');
    scorerPrompt();
-   newPointStructure = transform(oldPointStructure);
    if (scrabbleScorerType == 0) {
       console.log(`Score for ${scrabbleWord} ${oldScrabbleScorer(scrabbleWord)}`);
    }
@@ -149,7 +150,6 @@ function runProgram() {
    if (scrabbleScorerType == 2) {
       console.log(`Score for ${scrabbleWord} ${vowelBonusScorer(scrabbleWord)}`);
    }
-
 }
 
 // Don't write any code below this line //
